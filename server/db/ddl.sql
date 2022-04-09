@@ -9,7 +9,7 @@ create table if not exists im_user (
 )
 
 -- 好友表
-create table if not exists im_releation (
+create table if not exists im_relation (
 	uid_owner int not null COMMENT '主人 uid',
 	uid_friend int not null COMMENT '朋友 uid',
 	primary key(uid_owner, uid_friend)
@@ -30,7 +30,7 @@ insert into im_user (uname, gender, birth, region, words) values
 ('jack', '1', '1989-01-01', 'US', 'day day up!'),
 ('rose', '0', '1989-01-01', 'US', 'day day up!');
 
-insert into im_releation (uid_owner, uid_friend) values
+insert into im_relation (uid_owner, uid_friend) values
 (2, 3);
 
 insert into im_message (sender_uid, receiver_uid, content, send_time) values
@@ -44,7 +44,7 @@ select
 		when uid_friend = 2 then uid_owner
 	end 'friends'
 from
-	im_releation ir
+	im_relation ir
 where
 	uid_owner = 2
 	or uid_friend = 2
@@ -61,7 +61,7 @@ from
 			when uid_friend = 2 then uid_owner
 		end 'friends'
 	from
-		im_releation ir
+		im_relation ir
 	where
 		uid_owner = 2
 		or uid_friend = 2
@@ -75,7 +75,7 @@ inner join
 			when uid_friend = 1 then uid_owner
 		end 'friends'
 	from
-		im_releation ir
+		im_relation ir
 	where
 		uid_owner = 1
 		or uid_friend = 1
@@ -100,7 +100,7 @@ where
 				when uid_friend = 2 then uid_owner
 			end 'friends'
 		from
-			im_releation ir
+			im_relation ir
 		where
 			uid_owner = 2
 			or uid_friend = 2
@@ -114,7 +114,7 @@ where
 				when uid_friend = 1 then uid_owner
 			end 'friends'
 		from
-			im_releation ir
+			im_relation ir
 		where
 			uid_owner = 1
 			or uid_friend = 1

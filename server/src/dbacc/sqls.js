@@ -15,6 +15,7 @@ module.exports = {
     },
 
     commonFriends(aUid, bUid) {
+        util.requireNonNulls([aUid, bUid], '两者的 id 必须都有！');
         return `select *
                 from im.im_user
                 where uid in (
